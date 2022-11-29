@@ -1,4 +1,4 @@
-import { IUserLogin, IUserSignUp } from "../commons/interface";
+import { IRegisterForm, IUserLogin, IUserSignUp } from "../commons/interface";
 import { api } from "../lib/axios";
 
 const isAuthenticated = () => {
@@ -31,10 +31,17 @@ const signup = (user: IUserSignUp) => {
 
 //-----------------------------------------------------
 
+const registerForm = (register: IRegisterForm) => {
+    return api.post('/registers', register);
+}
+
+//-----------------------------------------------------
+
 const AuthService = {
     isAuthenticated,
     logout,
     login,
-    signup
+    signup,
+    registerForm
 }
 export default AuthService;

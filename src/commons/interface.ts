@@ -9,3 +9,11 @@ export interface IUserSignUp {
     email: string;
     phone: string;
 }
+
+export interface IRegisterForm {
+    agency: string;
+    bank: string;
+    user: string; //Arrumar
+    account: string;
+    accountType: string;
+}

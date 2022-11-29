@@ -47,7 +47,7 @@ export function SignUpPage() {
         });
     }
 
-    const isEmpty = (username: string, password: string, email: string) => {
+    const isError = (username: string, password: string, email: string) => {
 
         if(username == '') {
             setNameError(true);
@@ -90,7 +90,7 @@ export function SignUpPage() {
             setApiError(true);
             if (errorResponse.response.data) {
                 setErrorForm(errorResponse.response.data.errors[0]);
-                isEmpty(form.username, form.password, form.email);
+                isError(form.username, form.password, form.email);
             }
         });
     }
