@@ -31,8 +31,8 @@ const signup = (user: IUserSignUp) => {
 
 //-----------------------------------------------------
 
-const findUser = (username: string | null) => {
-    return api.get(`users/findUser/${username}`);
+const checkToken = () => {
+    return api.get('/authentication');
 }
 
 //-----------------------------------------------------
@@ -42,6 +42,6 @@ const AuthService = {
     logout,
     login,
     signup,
-    findUser
+    checkToken
 }
 export default AuthService;

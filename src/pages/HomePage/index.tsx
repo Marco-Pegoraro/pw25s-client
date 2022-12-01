@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import AuthService from "../../service/AuthService";
 
 export function HomePage() {
@@ -6,13 +7,14 @@ export function HomePage() {
     const user = localStorage.getItem('user');
 
     useEffect(() => {
-        //colocar aqui um pra validar token.
-        console.log(user);
-        AuthService.findUser(user)
+        AuthService.checkToken()
             .then((response) => {
-                localStorage.setItem("userId", response.data.id);
+                console.log(response);
             })
             .catch((errorResponse) => {
+                AuthService.logout();
+                AuthService.isAuthenticated();
+                window.location.reload();
                 console.log(errorResponse);
             });
     });
