@@ -34,7 +34,7 @@ export function NavBar() {
                                     navData.isActive ? "nav-link active" : "nav-link"
                                 }
                             >
-                                Registros
+                                Registro de contas
                             </NavLink>
                         </li>
 
@@ -45,7 +45,7 @@ export function NavBar() {
                                     navData.isActive ? "nav-link active" : "nav-link"
                                 }
                             >
-                                Movimentos
+                                Movimentações
                             </NavLink>
                         </li>
 

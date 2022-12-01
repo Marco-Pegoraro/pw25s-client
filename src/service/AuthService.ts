@@ -31,8 +31,8 @@ const signup = (user: IUserSignUp) => {
 
 //-----------------------------------------------------
 
-const registerForm = (register: IRegisterForm) => {
-    return api.post('/registers', register);
+const findUser = (username: string | null) => {
+    return api.get(`users/findUser/${username}`);
 }
 
 //-----------------------------------------------------
@@ -42,6 +42,6 @@ const AuthService = {
     logout,
     login,
     signup,
-    registerForm
+    findUser
 }
 export default AuthService;

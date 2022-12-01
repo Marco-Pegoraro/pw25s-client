@@ -10,10 +10,23 @@ export interface IUserSignUp {
     phone: string;
 }
 
+export interface IUser {
+    id?: number;
+    username: string;
+}
+
 export interface IRegisterForm {
     agency: string;
     bank: string;
-    user: string; //Arrumar
+    user: IUser;
     account: string;
     accountType: string;
+}
+
+export interface IMovementForm {
+    value: number;
+    register: IRegisterForm;
+    description: string;
+    date: Date;
+    type: string;
 }

@@ -101,7 +101,7 @@ export function SignUpPage() {
 
             {apiError &&
                 <div className="alert alert-danger col-6 mb-3 mx-auto">
-                    Erro ao efetuar o cadastro.
+                    Erro ao efetuar o cadastro. {capitalizeFirstLetter(errorForm.defaultMessage)}
                 </div>
             }
 
