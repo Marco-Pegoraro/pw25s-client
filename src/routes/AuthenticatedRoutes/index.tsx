@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { NavBar } from "../../components/NavBar";
 import { HomePage } from "../../pages/HomePage";
-import { LoginPage } from "../../pages/LoginPage";
 import { MoveFormPage } from "../../pages/MoveFormPage";
 import { MoveListPage } from "../../pages/MoveListPage";
 import { RegisterFormPage } from "../../pages/RegisterFormPage";

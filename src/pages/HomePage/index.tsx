@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import AuthService from "../../service/AuthService";
 
 export function HomePage() {

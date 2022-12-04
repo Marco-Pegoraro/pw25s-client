@@ -101,7 +101,7 @@ export function SignUpPage() {
 
             {apiError &&
                 <div className="alert alert-danger col-6 mb-3 mx-auto">
-                    Erro ao efetuar o cadastro. {capitalizeFirstLetter(errorForm.defaultMessage)}
+                    Erro ao efetuar o cadastro. ERRO: {capitalizeFirstLetter(errorForm.defaultMessage)}
                 </div>
             }
 
@@ -118,12 +118,6 @@ export function SignUpPage() {
                 />
             </div>
 
-            {nameError &&
-                <div className="alert alert-danger col-6 mx-auto">
-                    {capitalizeFirstLetter(errorForm.defaultMessage)}
-                </div>
-            }
-
             <div className="mx-auto col-6 mb-3">
                 <label>Informe sua senha</label>
                 <Input
@@ -137,12 +131,6 @@ export function SignUpPage() {
                 />
             </div>
 
-            {passError &&
-                <div className="alert alert-danger col-6 mx-auto">
-                    {capitalizeFirstLetter(errorForm.defaultMessage)}
-                </div>
-            }
-
             <div className="mx-auto col-6 mb-3">
                 <label>Informe seu email</label>
                 <Input
@@ -155,12 +143,6 @@ export function SignUpPage() {
                     name="email"
                 />
             </div>
-
-            {mailError &&
-                <div className="alert alert-danger col-6 mx-auto">
-                    {capitalizeFirstLetter(errorForm.defaultMessage)}
-                </div>
-            }
 
             <div className="mx-auto col-6 mb-4">
                 <label>Informe seu telefone</label>

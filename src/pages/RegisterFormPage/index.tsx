@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IRegisterForm } from "../../commons/interface";
 import { ButtonDisable } from "../../components/ButtonDisable";
+import { Input } from "../../components/Input";
 import RegisterService from "../../service/RegisterService";
 
 export function RegisterFormPage() {
@@ -16,6 +17,14 @@ export function RegisterFormPage() {
     const [errorForm, setErrorForm] = useState({
         defaultMessage: ''
     });
+
+    const [agencyError, setAgencyError] = useState(false);
+
+    const [bankError, setBankError] = useState(false);
+
+    const [accountError, setAccountError] = useState(false);
+
+    const [accountTypeError, setAccountTypeError] = useState(false);
 
     const [pendingApiCall, setPendingApiCall] = useState(false);
 
@@ -35,6 +44,29 @@ export function RegisterFormPage() {
 
     function capitalizeFirstLetter(message: string) {
         return message.charAt(0).toUpperCase() + message.slice(1);
+    }
+
+    const isError = (agency: string, bank: string, account: string, accountType: string) => {
+
+        if(agency == '') {
+            setAgencyError(true);
+        }
+        else if(bank == '') {
+            setAgencyError(false);
+            setBankError(true);
+        }
+        else if(account == '') {
+            setBankError(false);
+            setAccountError(true);
+        }
+        else if(accountType == '') {
+            setAccountError(false);
+            setAccountTypeError(true);
+        }
+        else {
+            setAccountTypeError(false);
+        }
+
     }
 
     const onClickInsert = () => {
@@ -60,7 +92,7 @@ export function RegisterFormPage() {
                 
                 if (errorResponse.response.data) {
                     setErrorForm(errorResponse.response.data.errors[0]);
-                    //isError(form.username, form.password, form.email);
+                    isError(form.agency, form.bank, form.account, form.accountType);
                 }
                 
             });
@@ -72,54 +104,58 @@ export function RegisterFormPage() {
 
             {apiError &&
                 <div className="alert alert-danger col-6 mb-3 mx-auto">
-                    Erro ao efetuar o registro. {capitalizeFirstLetter(errorForm.defaultMessage)}
+                    Erro ao efetuar o registro. <b>ERRO:</b> {capitalizeFirstLetter(errorForm.defaultMessage)}
                 </div>
             }
 
             <div className="mx-auto col-6 mb-4">
                 <label>Informe a agência</label>
-                <input
+                <Input
                     type="text"
                     className="form-control"
                     placeholder="Informe a agência"
                     onChange={onChange}
                     value={form.agency}
+                    hasError={agencyError}
                     name="agency"
                 />
             </div>
 
             <div className="mx-auto col-6 mb-4 ">
                 <label>Informe o banco</label>
-                <input
+                <Input
                     type="text"
                     className="form-control pe-5"
                     placeholder="Informe o banco"
                     onChange={onChange}
                     value={form.bank}
+                    hasError={bankError}
                     name="bank"
                 />
             </div>
 
             <div className="mx-auto col-6 mb-4">
                 <label>Informe a conta</label>
-                <input
+                <Input
                     type="text"
                     className="form-control"
                     placeholder="Informe a conta"
                     onChange={onChange}
                     value={form.account}
+                    hasError={accountError}
                     name="account"
                 />
             </div>
 
             <div className="mx-auto col-6 mb-4">
                 <label>Informe o tipo da conta</label>
-                <input
+                <Input
                     type="text"
                     className="form-control"
                     placeholder="Informe o tipo da conta"
                     onChange={onChange}
                     value={form.accountType}
+                    hasError={accountTypeError}
                     name="accountType"
                 />
             </div>
