@@ -10,15 +10,10 @@ export interface IUserSignUp {
     phone: string;
 }
 
-export interface IUser {
-    id?: number;
-    username: string;
-}
-
 export interface IRegisterForm {
+    id?: number;
     agency: string;
     bank: string;
-    user: IUser;
     account: string;
     accountType: string;
 }

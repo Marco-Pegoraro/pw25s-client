@@ -1,5 +1,5 @@
-import { ChangeEvent, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { ChangeEvent, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { IRegisterForm } from "../../commons/interface";
 import { ButtonDisable } from "../../components/ButtonDisable";
 import { Input } from "../../components/Input";
@@ -8,6 +8,7 @@ import RegisterService from "../../service/RegisterService";
 export function RegisterFormPage() {
 
     const [form, setForm] = useState({
+        id: undefined,
         agency: '',
         bank: '',
         account: '',
@@ -17,6 +18,8 @@ export function RegisterFormPage() {
     const [errorForm, setErrorForm] = useState({
         defaultMessage: ''
     });
+
+    const { id } = useParams();
 
     const [agencyError, setAgencyError] = useState(false);
 
@@ -31,6 +34,26 @@ export function RegisterFormPage() {
     const [apiError, setApiError] = useState(false);
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (id) {
+            RegisterService.findOneById(parseInt(id))
+                .then((response) => {
+                    if (response.data) {
+                        setForm({
+                            id: response.data.id,
+                            agency: response.data.agency,
+                            bank: response.data.bank,
+                            account: response.data.account,
+                            accountType: response.data.accountType
+                        });
+                    }
+                })
+                .catch((responseError) => {
+                    setApiError(true);
+                });
+        }
+    }, []);
 
     const onChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { value, name } = event.target;
@@ -48,18 +71,18 @@ export function RegisterFormPage() {
 
     const isError = (agency: string, bank: string, account: string, accountType: string) => {
 
-        if(agency == '') {
+        if (agency == '') {
             setAgencyError(true);
         }
-        else if(bank == '') {
+        else if (bank == '') {
             setAgencyError(false);
             setBankError(true);
         }
-        else if(account == '') {
+        else if (account == '') {
             setBankError(false);
             setAccountError(true);
         }
-        else if(accountType == '') {
+        else if (accountType == '') {
             setAccountError(false);
             setAccountTypeError(true);
         }
@@ -73,6 +96,7 @@ export function RegisterFormPage() {
         setPendingApiCall(true);
 
         const registerForm: IRegisterForm = {
+            id: form.id,
             agency: form.agency,
             bank: form.bank,
             account: form.account,
@@ -89,12 +113,12 @@ export function RegisterFormPage() {
                 setApiError(true);
                 setPendingApiCall(false);
                 console.log(errorResponse);
-                
+
                 if (errorResponse.response.data) {
                     setErrorForm(errorResponse.response.data.errors[0]);
                     isError(form.agency, form.bank, form.account, form.accountType);
                 }
-                
+
             });
     }
 
