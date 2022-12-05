@@ -19,6 +19,7 @@ export interface IRegisterForm {
 }
 
 export interface IMovementForm {
+    id?: number;
     value: number;
     register: IRegisterForm;
     description: string;
