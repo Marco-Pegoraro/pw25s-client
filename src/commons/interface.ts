@@ -18,11 +18,16 @@ export interface IRegisterForm {
     accountType: string;
 }
 
+export interface IRegisterList {
+    id?: number;
+    bank: string;
+}
+
 export interface IMovementForm {
     id?: number;
     value: number;
-    register: IRegisterForm;
+    register: IRegisterList;
     description: string;
-    date: Date;
+    date: string;
     type: string;
 }
