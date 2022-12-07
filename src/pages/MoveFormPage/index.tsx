@@ -48,7 +48,7 @@ export function MoveFormPage() {
                                 setForm({
                                     id: response.data.id,
                                     value: response.data.value,
-                                    register: { id: response.data.category.id, bank: '' },
+                                    register: { id: response.data.register.id, bank: '' },
                                     description: response.data.description,
                                     date: response.data.date,
                                     type: response.data.type
@@ -201,6 +201,7 @@ export function MoveFormPage() {
                     name="type"
                     value={form.type}
                     onChange={onChange}>
+                    <option selected value={""}></option>
                     <option value={"Recebimento"}>Recebimento</option>
                     <option value={"Pagamento"}>Pagamento</option>
                 </select>
