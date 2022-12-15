@@ -9,7 +9,6 @@ export function NavBar() {
     const onClickLogout = () => {
         AuthService.logout();
         window.location.reload();
-        navigate('/login');
     };
 
     return (

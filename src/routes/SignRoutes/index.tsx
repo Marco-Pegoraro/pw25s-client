@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 import { LoginPage } from "../../pages/LoginPage";
-import { NotFoundPage } from "../../pages/NotFoundPage";
 import { SignUpPage } from "../../pages/SignUpPage";
 
 export function SignRoutes() {
