@@ -64,6 +64,7 @@ export function HomePage() {
                         <td>Descrição</td>
                         <td>Tipo</td>
                         <td>Valor</td>
+                        <td>Valor Pago</td>
                         <td>Conta Banco</td>
                     </tr>
                 </thead>
@@ -75,6 +76,7 @@ export function HomePage() {
                             <td>{movement.description}</td>
                             <td>{movement.type}</td>
                             <td>{movement.value}</td>
+                            <td>{movement.paidValue}</td>
                             <td>{movement.register!.bank}</td>
 
                         </tr>

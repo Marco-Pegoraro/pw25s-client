@@ -1,11 +1,15 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/utfpr-logo.png";
 import AuthService from "../../service/AuthService";
 
 export function NavBar() {
+
+    const navigate = useNavigate();
+
     const onClickLogout = () => {
         AuthService.logout();
         window.location.reload();
+        navigate('/login');
     };
 
     return (

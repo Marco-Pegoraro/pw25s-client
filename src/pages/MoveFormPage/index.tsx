@@ -12,6 +12,7 @@ export function MoveFormPage() {
     const [form, setForm] = useState<IMovementForm>({
         id: undefined,
         value: 0,
+        paidValue: 0,
         register: { id: undefined, bank: '' },
         description: '',
         date: '',
@@ -19,6 +20,8 @@ export function MoveFormPage() {
     });
 
     const [valueError, setValueError] = useState(false);
+
+    const [paidValueError, setPaidValueError] = useState(false);
 
     const [descriptionError, setDescriptionError] = useState(false);
 
@@ -48,6 +51,7 @@ export function MoveFormPage() {
                                 setForm({
                                     id: response.data.id,
                                     value: response.data.value,
+                                    paidValue: response.data.paidValue,
                                     register: { id: response.data.register.id, bank: '' },
                                     description: response.data.description,
                                     date: response.data.date,
@@ -100,13 +104,17 @@ export function MoveFormPage() {
         return message.charAt(0).toUpperCase() + message.slice(1);
     }
 
-    const isError = (value: string, description: string) => {
+    const isError = (value: string, description: string, paidValue: string) => {
 
         if (value == '') {
             setValueError(true);
         }
-        else if (description == '') {
+        else if(paidValue == '') {
             setValueError(false);
+            setPaidValueError(true);
+        }
+        else if (description == '') {
+            setPaidValueError(false);
             setDescriptionError(true);
         }
         else {
@@ -121,6 +129,7 @@ export function MoveFormPage() {
         const movementForm: IMovementForm = {
             id: form.id,
             value: form.value!,
+            paidValue: form.paidValue!,
             register: form.register,
             description: form.description,
             date: form.date,
@@ -140,7 +149,7 @@ export function MoveFormPage() {
 
                 if (errorResponse.response.data) {
                     setErrorForm(errorResponse.response.data.errors[0]);
-                    isError(form.value.toString(), form.description);
+                    isError(form.value.toString(), form.description, form.paidValue.toString());
                 }
             });
     }
@@ -165,6 +174,19 @@ export function MoveFormPage() {
                     value={form.value.toString()}
                     name="value"
                     hasError={valueError}
+                />
+            </div>
+
+            <div className="mx-auto col-6 mb-4">
+                <label>Valor Pago</label>
+                <Input
+                    type="text"
+                    className="form-control"
+                    placeholder="Valor pago da transação"
+                    onChange={onChange}
+                    value={form.paidValue.toString()}
+                    name="paidValue"
+                    hasError={paidValueError}
                 />
             </div>
 

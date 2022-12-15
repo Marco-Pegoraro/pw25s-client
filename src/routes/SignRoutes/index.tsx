@@ -11,7 +11,7 @@ export function SignRoutes() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignUpPage />} />
 
-            <Route path="*" element={<NotFoundPage />} />
+            <Route path="*" element={<LoginPage />} />
         </Routes>
     )
 

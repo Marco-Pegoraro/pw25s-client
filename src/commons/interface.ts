@@ -26,6 +26,7 @@ export interface IRegisterList {
 export interface IMovementForm {
     id?: number;
     value: number;
+    paidValue: number;
     register: IRegisterList;
     description: string;
     date: string;

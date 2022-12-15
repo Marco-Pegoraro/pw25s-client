@@ -59,6 +59,7 @@ export function MoveListPage() {
                         <td>Descrição</td>
                         <td>Tipo</td>
                         <td>Valor</td>
+                        <td>Valor Pago</td>
                         <td>Conta Banco</td>
                         <td>Editar</td>
                         <td>Remover</td>
@@ -72,6 +73,7 @@ export function MoveListPage() {
                             <td>{movement.description}</td>
                             <td>{movement.type}</td>
                             <td>{movement.value}</td>
+                            <td>{movement.paidValue}</td>
                             <td>{movement.register!.bank}</td>
                             <td>
                                 <Link className="btn btn-primary"
